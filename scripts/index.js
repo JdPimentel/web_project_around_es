@@ -1,3 +1,5 @@
+import { setEventListeners, resetValidation } from "./validate.js";
+
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -74,10 +76,28 @@ const imagePopupCloseButton = imagePopup.querySelector(".popup__close");
 
 function openModal(modal) {
   modal.classList.add("popup_is-opened");
+  document.addEventListener("keydown", handleEscClose);
 }
 
 function closeModal(modal) {
   modal.classList.remove("popup_is-opened");
+  document.removeEventListener("keydown", handleEscClose);
+}
+
+function handleOverlayClick(evt) {
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.currentTarget);
+  }
+}
+
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_is-opened");
+
+    if (openedPopup) {
+      closeModal(openedPopup);
+    }
+  }
 }
 
 // EDITAR PERFIL
@@ -89,6 +109,7 @@ function fillProfileForm() {
 
 function handleOpenEditModal() {
   fillProfileForm();
+  resetValidation(profileForm);
   openModal(editPopup);
 }
 
@@ -168,6 +189,7 @@ profileForm.addEventListener("submit", handleProfileFormSubmit);
 // EVENTOS DEL MODAL NUEVA TARJETA
 
 addButton.addEventListener("click", function () {
+  resetValidation(newCardForm);
   openModal(newCardPopup);
 });
 
@@ -183,8 +205,17 @@ imagePopupCloseButton.addEventListener("click", function () {
   closeModal(imagePopup);
 });
 
+// EVENTOS GENERALES DE LOS POPUPS
+
+editPopup.addEventListener("click", handleOverlayClick);
+newCardPopup.addEventListener("click", handleOverlayClick);
+imagePopup.addEventListener("click", handleOverlayClick);
+
 // TARJETAS INICIALES
 
 initialCards.forEach(function (card) {
   renderCard(card.name, card.link, cardsList);
 });
+
+setEventListeners(profileForm);
+setEventListeners(newCardForm);

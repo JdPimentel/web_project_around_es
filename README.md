@@ -55,15 +55,33 @@ La página permite mostrar tarjetas de lugares, editar la información del perfi
 - Se agregó un modal para mostrar las imágenes en tamaño ampliado.
 - Se reutilizaron `openModal()` y `closeModal()` para los distintos popups.
 
+## Cambios realizados en Sprint 7
+
+- Se agregó validación a los formularios de edición de perfil y creación de tarjetas.
+- Se utilizaron atributos HTML como `required`, `minlength`, `maxlength` y `type="url"`.
+- Se utilizó la propiedad `ValidityState` para comprobar la validez de los campos.
+- Se muestran mensajes de error utilizando `validationMessage`.
+- Se implementaron funciones reutilizables para mostrar y ocultar errores.
+- Se agregó una función para activar y desactivar los botones de envío según el estado del formulario.
+- Se creó el archivo `validate.js` para separar toda la lógica de validación.
+- Se implementaron las funciones `setEventListeners()` y `resetValidation()`.
+- Se utilizaron módulos de JavaScript mediante `type="module"`.
+- Se agregó la posibilidad de cerrar los popups haciendo clic en la superposición.
+- Se agregó la posibilidad de cerrar los popups con la tecla `Esc`.
+- El detector de la tecla `Esc` se agrega al abrir un popup y se elimina al cerrarlo.
+
 ## Tecnologías utilizadas
 
 - HTML5
 - CSS3
 - JavaScript
 - DOM
+- Validación de formularios
+- JavaScript Modules
 - Git
 - GitHub
+- GitHub Pages
 
 ## GitHub Pages
 
-https://github.com/JdPimentel/web_project_around_es
+https://jdpimentel.github.io/web_project_around_es/
